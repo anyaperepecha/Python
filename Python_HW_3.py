@@ -55,7 +55,7 @@ byn_item = "byn"
 # 19. Создать переменную usd_byn_rate со значением 2.46
 usd_byn_rate = 2.46
 
-# 20. Сделать if в котором будет условие: если mult_int больше comp_item, то вывести в консоль (“Переменная mult_int больше”, comp_item)
+# 20. Сделать if в котором будет условие: если mult_int больше comp_item, то вывести в консоль (“Переменная mult_int больше”, comp_item).
 if mult_int > comp_item:
     print("Переменная mult_int больше", comp_item)
 
