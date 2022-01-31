@@ -9,7 +9,7 @@
 # "конвертированная сумма в GBP = int"
 # "конвертированная сумма в CNY = int"
 #
-# 3. Скипт должен выдать сообщение
+# 3. Скрипт должен выдать сообщение
 # "Введите положительное число." Если число меньше 0.
 # "Вы ввели не число. Введите число." Если введены буквы.
 # "Вы ввели пустое поле. Введите число." Если введено пустое значение.
@@ -20,18 +20,18 @@ rate = [0.39, 0.34, 0.36, 0.91, 0.29]
 target_amount = input("Количество денег в BYN = ")
 
 try:
-    target_amount = int(target_amount)
-    integer = True
+    target_amount = float(target_amount)
+    float = True
 except ValueError:
-    integer = False
+    float = False
 
-if integer and target_amount > 0:
+if float and target_amount > 0:
     print("Вы ввели сумму =", target_amount, "BYN")
     for i in range(len(currency)):
         currency_result = target_amount * rate[i]
         print("Конвертированная сумма в", currency[i], "=", currency_result)
 
-elif integer and target_amount < 0:
+elif float and target_amount < 0:
     print("Введите положительное число.")
 
 elif not target_amount:
