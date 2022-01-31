@@ -8,9 +8,10 @@
 
 
 usd_eur_rate = 1.13
-target_amount = int(input("Количество денег в EUR = "))
+target_amount = float(input("Количество денег в BYN = "))
 while True:
     currency_result = target_amount * usd_eur_rate
     print("Ты ввел", target_amount, "EUR")
     print("Конвертированная сумма в USD =", currency_result)
     break
+
