@@ -22,11 +22,13 @@ target_amount = input("Количество денег в BYN = ")
 try:
     target_amount = float(target_amount)
     float = True
+
 except ValueError:
     float = False
 
 if float and target_amount > 0:
     print("Вы ввели сумму =", target_amount, "BYN")
+
     for i in range(len(currency)):
         currency_result = target_amount * rate[i]
         print("Конвертированная сумма в", currency[i], "=", currency_result)
@@ -34,7 +36,7 @@ if float and target_amount > 0:
 elif float and target_amount < 0:
     print("Введите положительное число.")
 
-elif not target_amount:
+elif not (target_amount and target_amount.isspace()) == 0:
     print("Вы ввели пустое поле. Введите число.")
 
 else:

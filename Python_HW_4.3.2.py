@@ -15,15 +15,15 @@
 # "Вы ввели пустое поле. Введите число." Если введено пустое значение.
 # 4. Валюту пользователя определите сами.
 
-def int_check(n):
+def number_check(n):
     try:
-        target_amount = int(n)
+        target_amount = float(n)
         return True
     except ValueError:
         return False
 
 def empty_check(n):
-    if not n:
+    if not (n and n.isspace()) == 0:
         return True
     else:
         return False
@@ -37,7 +37,7 @@ def value_check(n):
 def convertation(n):
     print("Вы ввели сумму =", target_amount, "BYN")
     for i in range(len(currency)):
-        currency_result = int(target_amount) * rate[i]
+        currency_result = float(target_amount) * rate[i]
         print("Конвертированная валюта в", currency[i], "=", currency_result)
 
 currency = ["USD", "EUR", "CHF", "GBP", "CNY"]
@@ -46,10 +46,14 @@ target_amount = input("Количество денег в BYN = ")
 
 if empty_check(target_amount):
     print("Вы ввели пустое поле. Введите число.")
-elif int_check(target_amount):
-    if int(target_amount) > 0:
+
+elif number_check(target_amount):
+
+    if float(target_amount) > 0:
         convertation(target_amount)
-    elif int(target_amount) < 0:
+
+    elif float(target_amount) < 0:
         print("Введите положительное число.")
+
 else:
     print("Вы ввели не число. Введите число.")
