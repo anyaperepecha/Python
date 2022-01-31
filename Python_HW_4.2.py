@@ -13,8 +13,7 @@
 currency = ["USD", "EUR", "CHF", "GBP", "CNY"]
 rate = [0.39, 0.34, 0.36, 0.91, 0.29]
 
-
-target_amount = int(input("Количество денег в BYN = "))
+target_amount = float(input("Количество денег в BYN = "))
 print("Ты ввел", target_amount, "BYN")
 
 for i in range(len(currency)):
