@@ -33,22 +33,22 @@ while True:
     target_amount = input("Введите сумму = ")
 
     try:
-        target_amount = int(target_amount)
-        integer = True
-    except:
-        integer = False
+        target_amount = float(target_amount)
+        it_float = True
 
-    if not target_amount:
+    except ValueError:
+        it_float = False
+
+    if it_float and target_amount > 0:
+        currency_result = (target_amount) * rate[currency]
+        print("Вы ввели сумму = ", target_amount, "и валюту = ", currency_range[currency])
+        print("Конвертированная сумма в BYN = ", currency_result)
+
+    elif it_float and target_amount < 0:
+        print("Введите положительное число.")
+
+    elif not (target_amount and target_amount.isspace()) == 0:
         print("Вы ввели пустое поле. Введите число.")
-
-    elif integer:
-        if target_amount > 0:
-            currency_result = int(target_amount) * rate[currency]
-            print("Вы ввели сумму =", target_amount, "и валюту = ", currency_range[currency])
-            print("Конвертированная сумма в BYN = ", currency_result)
-
-        else:
-            print("Введите положительное число.")
 
     else:
         print("Вы ввели не число. Введите число.")

@@ -21,21 +21,21 @@ def empty_check(n):
     else:
         return False
 
-def int_check(n):
+def number_check(n):
     try:
-        n = int(n)
+        n = float(n)
         return True
     except ValueError:
         return False
 
 def value_check(n):
-    if int(n) > 0:
+    if float(n) > 0:
         return True
     else:
         return False
 
 def convertation(n):
-    currency_result = int(target_amount) * rate[currency]
+    currency_result = float(target_amount) * rate[currency]
     print("Вы ввели сумму =", target_amount, "и валюту = ", currency_range[currency])
     print("Конвертированная сумма в BYN = ", currency_result)
 
@@ -60,7 +60,7 @@ while True:
     if empty_check(target_amount):
         print("Вы ввели пустое поле. Введите число.")
 
-    elif int_check(target_amount):
+    elif number_check(target_amount):
         if value_check(target_amount):
             convertation(target_amount)
         else:
