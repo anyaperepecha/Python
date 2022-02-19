@@ -37,11 +37,11 @@ def emails_2_file(file_name, emails_list):
 
 # Вариант 2. Создать nne_2.csv файл с 3-мя полями(Number, Name, Email ), в котором будут 450 строк. Имя и часть email до @ должны совпадать.
 
-def nne_2_file(file_name, nne_list):
+def nne_2_file(file_name, nne_dict):
     with open(file_name, 'w') as f:
         writer = csv.DictWriter(f, fieldnames=['Number', 'Name', 'Email'])
         writer.writeheader()
-        writer.writerows(nne_list)
+        writer.writerows(nne_dict)
 
 # Добавить в файл nne_2.csv столбец Date и заполнить каждую строку текущей датой и временем. Поле даты заполнить следующим образом:
 # a) Первые 50 строк даты по годам от 1980 - 1990 (распределение рандомно)
@@ -59,9 +59,9 @@ def nne_2_update(file_name):
     with open(file_name, 'w', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=[*date_list[0].keys(), 'Date'])
         writer.writeheader()
-        for b in range(0, 451):
+        for b in range(1, 451):
             date = datetime.datetime.now()
-            if b in range(0, 51):
+            if b in range(1, 51):
                 date_list[b]['Date'] = date.replace(year=random.randint(1980, 1990))
             elif b in range(50, 151):
                 date_list[b]['Date'] = date.replace(year=random.randint(1991, 2000))
@@ -127,7 +127,7 @@ for i in range(0, 1000):
 digits_2_file('digits_2.csv', digits_list[10:311])
 names_2_file('names_2.csv', names_list[1:401])
 emails_2_file('emails_2.csv', emails_list[1:401])
-nne_2_file('nne_2.csv', nne_list[0:451])
+nne_2_file('nne_2.csv', nne_list[1:451])
 nne_2_update('nne_2.csv')
 combo('nne_2.csv', 'combo.csv', names_list[450:1000])
 
