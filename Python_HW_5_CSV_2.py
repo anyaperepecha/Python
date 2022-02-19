@@ -129,7 +129,7 @@ names_2_file('names_2.csv', names_list[1:401])
 emails_2_file('emails_2.csv', emails_list[1:401])
 nne_2_file('nne_2.csv', nne_list[0:451])
 nne_2_update('nne_2.csv')
-combo('nne_2.csv', 'combo.csv', names_list[450:])
+combo('nne_2.csv', 'combo.csv', names_list[450:1000])
 
 
 
