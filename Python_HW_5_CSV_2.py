@@ -39,7 +39,7 @@ def emails_2_file(file_name, emails_list):
 
 def nne_2_file(file_name, nne_list):
     with open(file_name, 'w') as f:
-        writer = csv.DictWriter(f, fieldnames=['Number', 'Name', 'Email'], lineterminator='\n')
+        writer = csv.DictWriter(f, fieldnames=['Number', 'Name', 'Email'])
         writer.writeheader()
         writer.writerows(nne_list)
 
@@ -52,7 +52,7 @@ def nne_2_file(file_name, nne_list):
 def nne_2_update(file_name):
     with open(file_name, 'r', newline='') as f:
         date_list = []
-        reader = csv.DictReader(f, fieldnames=['Number', 'Name', 'Email'], lineterminator='\n')
+        reader = csv.DictReader(f, fieldnames=['Number', 'Name', 'Email'])
         for a in reader:
             date_list.append(a)
 
@@ -71,7 +71,48 @@ def nne_2_update(file_name):
                 date_list[b]['Date'] = date.replace(year=random.randint(2011, 2021))
             writer.writerow(date_list[b])
 
-            # print(csv.DictWriter(f, fieldnames=[*date_list[0].keys(), 'Date'])
+# Создать файл combo.csv с полями Name, Email, Date. 1000 строк.
+# a) Соберите имена из файла nne_2.csv.
+# b) недостающие 550 строк имён сгенерируйте.
+# с) Имена расположите в алфавитном порядке.
+# d) Для имён из файла nne_2.csv забрать даты из nne_2.csv которые были с этими именами в nne_2.csv.
+# e) Остальные даты генерировать рандомно.
+# f) Добавить и заполнить (можно рандомно) столбы Email, Phone, Gender, Salary.
+
+
+def combo(nne_2_file, combo_file, names_list):
+    with open(nne_2_file, 'r', newline='') as f:
+        reader = csv.DictReader(f, fieldnames=['Number', 'Name', 'Email', 'Date'])
+        nd_list = []
+        for i in reader:
+            nd_list.append([i['Name'], i['Date']])
+        nd_list = nd_list + names_list
+        sorted_list = sorted(nd_list[1:])
+
+    with open(combo_file, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=['Name', 'Email', 'Date', 'Phone', 'Salary', 'Gender'])
+        writer.writeheader()
+        gender_list = ['Male', 'Female']
+        phone_list = []
+        dict = {}
+        for j in range(0, 1000):
+            if len(sorted_list[j]) == 1:
+                dict['Name'] = sorted_list[j][0]
+                dict['Date'] = datetime.datetime.now()
+                dict['Email'] = dict['Name'].replace(' ', '_') + '@yahoo.com'
+                dict['Phone'] = '+375 33 ' + str(random.randint(1111111, 9999999))
+                dict['Gender'] = gender_list[random.randint(0, 1)]
+                dict['Salary'] = random.randint(1000, 9999)
+            else:
+                dict['Name'] = sorted_list[j][0]
+                dict['Date'] = sorted_list[j][1]
+                dict['Email'] = dict['Name'].replace(' ', '_') + '@yahoo.com'
+                dict['Phone'] = '+375 33 ' + str(random.randint(1111111, 9999999))
+                dict['Gender'] = gender_list[random.randint(0, 1)]
+                dict['Salary'] = random.randint(1000, 9999)
+            writer.writerow(dict)
+
+
 
 digits_list = []
 names_list = []
@@ -92,13 +133,7 @@ names_2_file('names_2.csv', names_list[1:401])
 emails_2_file('emails_2.csv', emails_list[1:401])
 nne_2_file('nne_2.csv', nne_list[0:451])
 nne_2_update('nne_2.csv')
+combo('nne_2.csv', 'combo.csv', names_list[450:1000])
 
-# Создать файл combo.csv с полями Name, Email, Date. 1000 строк.
-# a) Соберите имена из файла nne_2.csv.
-# b) недостающие 550 строк имён сгенерируйте.
-# с) Имена расположите в алфавитном порядке.
-# d) Для имён из файла nne_2.csv забрать даты из nne_2.csv которые были с этими именами в nne_2.csv.
-# e) Остальные даты генерировать рандомно.
-# f) Добавить и заполнить (можно рандомно) столбы Email, Phone, Gender, Salary.
 
-# def combo(file_name):
+
