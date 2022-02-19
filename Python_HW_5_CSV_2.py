@@ -93,7 +93,6 @@ def combo(nne_2_file, combo_file, names_list):
         writer = csv.DictWriter(f, fieldnames=['Name', 'Email', 'Date', 'Phone', 'Salary', 'Gender'])
         writer.writeheader()
         gender_list = ['Male', 'Female']
-        phone_list = []
         dict = {}
         for j in range(0, 1000):
             if len(sorted_list[j]) == 1:
@@ -112,8 +111,6 @@ def combo(nne_2_file, combo_file, names_list):
                 dict['Salary'] = random.randint(1000, 9999)
             writer.writerow(dict)
 
-
-
 digits_list = []
 names_list = []
 emails_list = []
@@ -127,13 +124,12 @@ for i in range(0, 1000):
     emails_list.append([email])
     nne_list.append({'Number': i, 'Name': name, 'Email': email})
 
-
 digits_2_file('digits_2.csv', digits_list[10:311])
 names_2_file('names_2.csv', names_list[1:401])
 emails_2_file('emails_2.csv', emails_list[1:401])
 nne_2_file('nne_2.csv', nne_list[0:451])
 nne_2_update('nne_2.csv')
-combo('nne_2.csv', 'combo.csv', names_list[450:1000])
+combo('nne_2.csv', 'combo.csv', names_list[450:])
 
 
 
