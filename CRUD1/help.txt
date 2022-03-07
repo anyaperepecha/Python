@@ -1,0 +1,5 @@
+Please, enter one of the following parameters:
+1. create - create new user
+2. read - read information about user by email or about all users
+3. update - update information about user (email, name, password, phone)
+4. delete - delete user
